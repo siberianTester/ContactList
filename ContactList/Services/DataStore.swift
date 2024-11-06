@@ -6,6 +6,9 @@
 //
 
 final class DataStore {
+    
+    static let shared = DataStore()
+    
     let names = [
         "John",
         "Mark",
@@ -45,4 +48,6 @@ final class DataStore {
         "666666",
         "777777"
     ].shuffled()
+    
+    private init() {}
 }

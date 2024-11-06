@@ -19,13 +19,21 @@ struct Person {
     
     static func getPersons() -> [Person] {
         var persons: [Person] = []
+        let dataStore = DataStore.shared
         
-        let names = DataStore().names
-        let lastNames = DataStore().lastNames
-        let mailAddresses = DataStore().mailAddresses
-        let phoneNumbers = DataStore().phoneNumbers
+        let names = dataStore.names
+        let lastNames = dataStore.lastNames
+        let mailAddresses = dataStore.mailAddresses
+        let phoneNumbers = dataStore.phoneNumbers
         
-        for value in 0..<names.count {
+        let iterationCount = min(
+            names.count,
+            lastNames.count,
+            mailAddresses.count,
+            phoneNumbers.count
+        )
+        
+        for value in 0..<iterationCount {
             let person = Person(
                 name: names[value],
                 lastName: lastNames[value],
